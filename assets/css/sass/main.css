@@ -1,0 +1,415 @@
+/* --------------------------------------------------
+   Breakpoint Mixin
+   -------------------------------------------------- */
+/* --------------------------------------------------
+   Breakpoint Settings
+   -------------------------------------------------- */
+:root {
+  color: #222222;
+  background-color: white;
+}
+
+body {
+  color: #222222;
+  background-color: white;
+}
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+}
+
+/**
+* Make all elements from the DOM inherit from the parent box-sizing
+* Since `*` has a specificity of 0, it does not override the `html` value
+* making all elements inheriting from the root box-sizing value
+* See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.nuxt-link-exact-active {
+  color: #41bb83 !important;
+}
+
+/**
+ * Basic typography style for copy text
+ */
+body {
+  font: normal 125%/1.4 "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+div[class^=con__col-] {
+  text-align: center;
+}
+
+a:hover {
+  color: #222222;
+}
+
+nav {
+  border-bottom: 1px solid #cccc;
+  padding: 1rem;
+  display: flex;
+  position: relative;
+}
+nav .mobile-bar {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+}
+@media (min-width: 667px) {
+  nav .mobile-bar {
+    display: none;
+  }
+}
+nav .mobile-bar div {
+  display: block;
+  height: 2px;
+  width: 20px;
+  margin: 2px;
+  background: #888;
+}
+nav .mobile-bar.active {
+  background: #333;
+}
+nav .mobile-bar.active div {
+  background: white;
+}
+nav .mobile-bar:hover {
+  background: #e1e1e1;
+}
+nav .mobile-bar:hover div {
+  background: #444;
+}
+nav .mobile-bar:hover.active {
+  background: #222;
+}
+nav .mobile-bar:hover.active div {
+  background: white;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: ease 1s all;
+}
+@media (max-width: 768px) {
+  nav ul {
+    z-index: 1;
+    opacity: 0;
+    max-height: 0px;
+    overflow: hidden;
+    visibility: none;
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    margin-left: -100%;
+  }
+  nav ul.active {
+    margin-left: 0;
+    opacity: 1;
+    max-height: 500px;
+    background-color: white;
+  }
+  nav ul.active li {
+    display: block;
+  }
+  nav ul.active li a {
+    display: block;
+  }
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: inline-block;
+  color: #222222;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 0.75em;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.footer-link {
+  margin-right: 1rem;
+  font-size: 0.75em;
+}
+.footer-link a {
+  color: #222222;
+}
+
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+
+.profile {
+  max-height: 375px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.profile img {
+  max-height: 375px;
+  position: relative;
+  object-fit: cover;
+}
+
+.profile-avatar-wrapper {
+  border-radius: 50%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-styled-avatar {
+  position: absolute;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.profile-image img {
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-bar {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.profile-name {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.profile-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-location-name {
+  margin-left: 0.25em;
+  margin-bottom: 0;
+}
+.profile-location-name a {
+  color: #222222;
+  font-size: 0.75em;
+}
+@media (min-width: 1024px) {
+  .profile-location-name a {
+    font-size: 1em;
+  }
+}
+.profile-location-name:hover {
+  background: #e1e1e1;
+}
+
+.profile-following-button {
+  margin: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-social-data {
+  font-size: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.profile-social-data .profile-followers, .profile-social-data .profile-followings, .profile-social-data .profile-photo-likes {
+  display: flex;
+}
+.profile-social-data .profile-followings, .profile-social-data .profile-photo-likes {
+  margin-left: 0.5rem;
+}
+@media (min-width: 1024px) {
+  .profile-social-data .profile-followings, .profile-social-data .profile-photo-likes {
+    margin-left: 1rem;
+  }
+}
+.profile-social-data div > p.description {
+  font-weight: bold;
+}
+
+.profile-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.profile-social-icons a {
+  color: #222222;
+}
+.profile-social-icons a:nth-child(2), .profile-social-icons a:nth-child(3) {
+  margin-left: 1rem;
+}
+
+.profile-gallery-container {
+  min-height: 700px;
+  padding: 0.5rem 1rem 4rem 1rem;
+  background-color: #f2f2f2;
+}
+.profile-gallery-container .profile-gallery-grid {
+  max-width: 100%;
+  background-color: #f2f2f2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1.5rem;
+  justify-items: center;
+}
+.profile-gallery-container .profile-gallery-img {
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.25s ease-in-out;
+}
+.profile-gallery-container .profile-gallery-img:hover {
+  opacity: 0.7;
+}
+
+.ds-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.ds-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.library-bar {
+  margin: 1em;
+  display: grid;
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  grid-template-areas: "header-1" "header-2" "header-3" "header-4" "header-5" "header-6" "left" "middle" "right" "footer";
+  grid-column-gap: 1rem;
+  grid-row-gap: 0.5rem;
+}
+@media (min-width: 667px) {
+  .library-bar {
+    grid-template-areas: "header-1 header-2 header-3 header-4 header-5 header-6" "left left middle middle right right" "footer footer footer footer footer footer";
+    justify-content: center;
+    align-items: center;
+  }
+}
+.library-bar a {
+  font-size: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #222222;
+  padding: 0.5em 1em;
+  border: 0.75px solid #e1e1e1;
+  border-radius: 0.25em;
+  text-align: center;
+}
+
+.header-1 {
+  grid-area: header-1;
+}
+
+.header-2 {
+  grid-area: header-2;
+}
+
+.header-3 {
+  grid-area: header-3;
+}
+
+.header-4 {
+  grid-area: header-4;
+}
+
+.header-5 {
+  grid-area: header-5;
+}
+
+.header-6 {
+  grid-area: header-6;
+}
+
+/**
+.mobile {
+  padding-top: 200px;
+}
+**/
+
+/*# sourceMappingURL=main.css.map */
